@@ -59,14 +59,14 @@
 //   },
 // };
 
-const path = require("path");
+import path from "path";
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 
-  plugins: [require("daisyui"), require("tailwindcss-animate")],
+  plugins: [import("daisyui"), import("tailwindcss-animate")],
   theme: {
     extend: {
       borderRadius: {
