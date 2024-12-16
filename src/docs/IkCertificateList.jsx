@@ -2,24 +2,24 @@ import React, { useMemo } from "react";
 import { useCollection } from "../hooks/customFetch";
 import { differenceInDays } from "date-fns";
 
-function LicenceList() {
-  const { data: licences } = useCollection("licence");
+function IkCertificateList() {
+  const { data: ik_certificates } = useCollection("ik_certificate");
   const { data: stations } = useCollection("stations");
 
   // Объединяем данные из коллекций licence и station
   const mergedData = useMemo(() => {
-    if (!licences || !stations) return [];
+    if (!ik_certificates || !stations) return [];
 
     // Группируем лицензии по id_station
-    const groupedLicences = licences.reduce((acc, licence) => {
-      const { id_station, expired } = licence;
+    const groupedLicences = ik_certificates.reduce((acc, ik_certificate) => {
+      const { id_station, expired } = ik_certificate;
       if (!acc[id_station]) {
-        acc[id_station] = licence;
+        acc[id_station] = ik_certificate;
       } else {
         const currentMaxDate = new Date(acc[id_station].expired);
         const newDate = new Date(expired);
         if (newDate > currentMaxDate) {
-          acc[id_station] = licence;
+          acc[id_station] = ik_certificate;
         }
       }
       return acc;
@@ -27,28 +27,30 @@ function LicenceList() {
 
     // Создаем массив с объединенными данными
     return Object.values(groupedLicences)
-      .map((licence) => {
-        const station = stations.find((st) => st.id === licence.id_station);
+      .map((ik_certificate) => {
+        const station = stations.find(
+          (ik) => ik.id === ik_certificate.id_station
+        );
         if (!station) return null;
 
         // Рассчитываем количество дней до истечения или просрочки лицензии
         const today = new Date();
-        const expiredDate = new Date(licence.expired);
+        const expiredDate = new Date(ik_certificate.expired);
         const daysLeft = differenceInDays(expiredDate, today);
 
         return {
-          id: licence.id,
+          id: ik_certificate.id,
           moljal: station.moljal, // Название объекта
           ltd: station.ltd, // Название LTD
           station_number: station.station_number, // Номер станции
-          active: licence.active, // Дата выдачи лицензии
-          expired: licence.expired, // Дата окончания лицензии
-          number: licence.number, // Дата окончания лицензии
+          active: ik_certificate.active, // Дата выдачи лицензии
+          expired: ik_certificate.expired, // Дата окончания лицензии
+          number: ik_certificate.number, // Дата окончания лицензии
           daysLeft,
         };
       })
       .filter(Boolean); // Убираем записи, у которых нет совпадений в station
-  }, [licences, stations]);
+  }, [ik_certificates, stations]);
 
   // Функция для определения класса стиля на основе оставшихся дней
   const getStyleClass = (daysLeft) => {
@@ -65,9 +67,11 @@ function LicenceList() {
         <tr>
           <th className="border border-gray-300 px-4 py-2">Объект</th>
           <th className="border border-gray-300 px-4 py-2">МЧЖ</th>
-          <th className="border border-gray-300 px-4 py-2">Лицензия рақами</th>
           <th className="border border-gray-300 px-4 py-2">
-            Лицензия берилган сана
+            Сертификат рақами
+          </th>
+          <th className="border border-gray-300 px-4 py-2">
+            Сертификат берилган сана
           </th>
           <th className="border border-gray-300 px-4 py-2">Тугаш санаси</th>
           <th className="border border-gray-300 px-4 py-2">Холати</th>
@@ -99,4 +103,4 @@ function LicenceList() {
   );
 }
 
-export default LicenceList;
+export default IkCertificateList;

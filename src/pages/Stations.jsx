@@ -40,6 +40,11 @@ function Users() {
           </table>
         </div>
       </div>
+      <div className="flex justify-center items-center mt-10">
+        <Link to="/" className="btn btn-primary w-48">
+          Орқага
+        </Link>
+      </div>
     </div>
   );
 }

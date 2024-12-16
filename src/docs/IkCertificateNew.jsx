@@ -12,7 +12,7 @@ import { Button } from "../components/ui/button";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
-function LicenceNew() {
+function IkCertificateNew() {
   const user = useAppStore((state) => state.user);
 
   const [formState, setFormState] = useState({
@@ -23,6 +23,7 @@ function LicenceNew() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [stationOptions, setStationOptions] = useState([]); // Список станций из Firestore
+  const [selectedStation, setSelectedStation] = useState(null); // Данные выбранной станции
 
   useEffect(() => {
     const fetchStations = async () => {
@@ -30,6 +31,7 @@ function LicenceNew() {
         const querySnapshot = await getDocs(collection(db, "stations"));
         const stations = querySnapshot.docs.map((doc) => ({
           id: doc.id, // ID документа станции
+          tr: doc.data().tr,
           moljal: doc.data().moljal,
           ltd: doc.data().ltd,
           station_number: doc.data().station_number,
@@ -50,21 +52,35 @@ function LicenceNew() {
       ...prev,
       [name]: value,
     }));
+
+    // Установка данных выбранной станции при выборе id_station
+    if (name === "id_station") {
+      const station = stationOptions.find((option) => option.id === value);
+      setSelectedStation(station || null);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const newLicence = {
+    // Проверяем, выбрана ли станция
+    if (!selectedStation) {
+      toast.error("Пожалуйста, выберите станцию.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    const newIkCertificate = {
       ...formState,
+      tr: selectedStation.tr, // Добавляем поле tr из выбранной станции
       createdAt: serverTimestamp(),
       uid: user.uid, // ID текущего пользователя
     };
 
     try {
-      await addDoc(collection(db, "licence"), newLicence);
-      toast.success("Янги лицензия мувафақиятли яратилди!");
+      await addDoc(collection(db, "ik_certificate"), newIkCertificate);
+      toast.success("Янги ИК мувафақиятли яратилди!");
 
       setFormState({
         id_station: "",
@@ -72,6 +88,7 @@ function LicenceNew() {
         active: "",
         expired: "",
       });
+      setSelectedStation(null);
     } catch (error) {
       toast.error("Хатолик: " + error.message);
     } finally {
@@ -98,7 +115,7 @@ function LicenceNew() {
               className="flex flex-col gap-5 w-[900px] bg-base-100 shadow-xl px-8 py-12"
             >
               <h1 className="text-3xl font-semibold text-center">
-                Янги лицензия қўшиш
+                Янги ўлчов комплекси ("ИК") қўшиш
               </h1>
               <div className="flex gap-5 items-center justify-center">
                 {/* Выпадающий список для выбора станции */}
@@ -130,7 +147,7 @@ function LicenceNew() {
               <div className="flex justify-center items-center gap-5">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Лицензия рақами</span>
+                    <span className="label-text">ИК сертификати рақами</span>
                   </label>
                   <input
                     name="number"
@@ -143,7 +160,7 @@ function LicenceNew() {
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Дата выдачи лицензии</span>
+                    <span className="label-text">Сертификат берилган сана</span>
                   </label>
                   <input
                     name="active"
@@ -156,7 +173,7 @@ function LicenceNew() {
                 </div>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Срок истечения лицензии</span>
+                    <span className="label-text">Сертификат тугаш санаси</span>
                   </label>
                   <input
                     name="expired"
@@ -179,7 +196,7 @@ function LicenceNew() {
                 </Button>
               </div>
             </form>
-            <Link to="/licence">Орқага</Link>
+            <Link to="/ikcertificate">Орқага</Link>
           </div>
         </div>
       )}
@@ -187,4 +204,4 @@ function LicenceNew() {
   );
 }
 
-export default LicenceNew;
+export default IkCertificateNew;

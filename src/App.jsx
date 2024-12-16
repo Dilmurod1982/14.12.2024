@@ -17,7 +17,17 @@ import {
   NewStation,
   Stations,
 } from "./pages";
-import { Docs, Licence, IkCertificate, LicenceNew } from "./docs";
+import {
+  Docs,
+  Licence,
+  IkCertificate,
+  LicenceNew,
+  IkCertificateNew,
+  NgCertificate,
+  NgCertificateNew,
+  NamlikCertificate,
+  NamlikCertificateNew,
+} from "./docs";
 import MainLayout from "./layouts/MainLayout";
 
 import { action as RegisterAction } from "./pages/Regagnks";
@@ -167,12 +177,32 @@ function App() {
           element: <Licence />,
         },
         {
+          path: "/licencenew",
+          element: <LicenceNew />,
+        },
+        {
           path: "/ikcertificate",
           element: <IkCertificate />,
         },
         {
-          path: "/licencenew",
-          element: <LicenceNew />,
+          path: "/ikcertificatenew",
+          element: <IkCertificateNew />,
+        },
+        {
+          path: "/ngcertificate",
+          element: <NgCertificate />,
+        },
+        {
+          path: "/ngcertificatenew",
+          element: <NgCertificateNew />,
+        },
+        {
+          path: "/namlikcertificate",
+          element: <NamlikCertificate />,
+        },
+        {
+          path: "/namlikcertificatenew",
+          element: <NamlikCertificateNew />,
         },
       ],
     },

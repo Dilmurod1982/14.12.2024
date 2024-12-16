@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Users() {
   return (
-    <div className="mx-5">
+    <div className="mx-5 flex flex-col gap-5">
       <div className="mr-0">
         <Button>
           <Link to="/newuser">Янги фойдаланувчи яратиш</Link>
@@ -33,6 +33,11 @@ function Users() {
             </tbody>
           </table>
         </div>
+      </div>
+      <div className="flex justify-center items-center">
+        <Link to="/" className="btn btn-primary w-48">
+          Орқага
+        </Link>
       </div>
     </div>
   );

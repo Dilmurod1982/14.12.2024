@@ -6,7 +6,7 @@ import LicenceList from "./LicenceList";
 
 function Licence() {
   return (
-    <div className="mx-5">
+    <div className="flex flex-col gap-5 mx-5">
       <div className="mr-0">
         <Button>
           <Link to="/licencenew">Янги лицензия қўшиш</Link>
@@ -26,6 +26,14 @@ function Licence() {
             </tbody>
           </table>
         </div>
+      </div>
+      <div className="flex justify-center items-center ">
+        <Link
+          to="/docs"
+          className="flex justify-center items-center w-48 btn btn-primary"
+        >
+          Орқага
+        </Link>
       </div>
     </div>
   );

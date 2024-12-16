@@ -1,18 +1,20 @@
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
-import IkCertificateList from "./IkCertificateList";
+import NamlikCertificateList from "./NamlikCertificateList";
 
-function IkCertificate() {
+function NamlikCertificate() {
   return (
     <div className="flex flex-col gap-5 mx-5">
       <div className="mr-0">
         <Button>
-          <Link to="/ikcertificatenew">Янги ИК сертификатини қўшиш</Link>
+          <Link to="/namlikcertificatenew">
+            Янги Намлик ўлчаш воситаси сертификатини қўшиш
+          </Link>
         </Button>
       </div>
       <div>
         <h1 className="flex justify-center text-3xl font-bold my-5">
-          Ўлчов комплекси сертификатлари рўйхати
+          Намлик ўлчаш воситасини сертификатлари рўйхати
         </h1>
       </div>
       <div>
@@ -20,7 +22,7 @@ function IkCertificate() {
           <table className="table table-xs">
             <thead></thead>
             <tbody>
-              <IkCertificateList />
+              <NamlikCertificateList />
             </tbody>
           </table>
         </div>
@@ -37,4 +39,4 @@ function IkCertificate() {
   );
 }
 
-export default IkCertificate;
+export default NamlikCertificate;

@@ -1,4 +1,12 @@
 export { default as Docs } from "./Docs";
 export { default as Licence } from "./Licence";
 export { default as IkCertificate } from "./IkCertificate";
+export { default as IkCertificateNew } from "./IkCertificateNew";
+export { default as IkCertificateList } from "./IkCertificateList";
 export { default as LicenceNew } from "./LicenceNew";
+export { default as NgCertificate } from "./NgCertificate";
+export { default as NgCertificateList } from "./NgCertificateList";
+export { default as NgCertificateNew } from "./NgCertificateNew";
+export { default as NamlikCertificate } from "./NamlikCertificate";
+export { default as NamlikCertificateList } from "./NamlikCertificateList";
+export { default as NamlikCertificateNew } from "./NamlikCertificateNew";
