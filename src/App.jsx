@@ -16,6 +16,7 @@ import {
   NewLtd,
   NewStation,
   Stations,
+  UserStations,
 } from "./pages";
 import {
   Docs,
@@ -39,6 +40,7 @@ import {
   EditUser,
   UsersList,
   SingleStation,
+  UserStationDocs,
 } from "./components/";
 import { useAppStore } from "./components/zustand";
 import { useEffect } from "react";
@@ -48,6 +50,7 @@ import RoleBasedRedirect from "./components/RoleBasedRedirect";
 
 function App() {
   const user = useAppStore((state) => state.user);
+
   const rol = useAppStore((state) => state.rol);
   const isAuthReady = useAppStore((state) => state.isAuthReady);
   const setUser = useAppStore((state) => state.setUser);
@@ -78,6 +81,16 @@ function App() {
           element: rol ? (
             rol === "user" ? (
               <HomeUser />
+            ) : (
+              <Navigate to="/" />
+            )
+          ) : null,
+        },
+        {
+          path: "/userstations",
+          element: rol ? (
+            rol === "user" ? (
+              <UserStations />
             ) : (
               <Navigate to="/" />
             )
@@ -203,6 +216,10 @@ function App() {
         {
           path: "/namlikcertificatenew",
           element: <NamlikCertificateNew />,
+        },
+        {
+          path: "/userstationdocs/edit/:id",
+          element: <UserStationDocs />,
         },
       ],
     },
