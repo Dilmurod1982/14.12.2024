@@ -15,9 +15,9 @@ function NewStation() {
   const user = useAppStore((state) => state.user);
 
   const [formState, setFormState] = useState({
-    ltd: "", // Поле для выбора из списка LTD
+    ltd: "",
     station_number: "",
-    operator: "",
+    operators: [], // Массив выбранных пользователей
     moljal: "",
     viloyat: "",
     tuman: "",
@@ -31,11 +31,28 @@ function NewStation() {
     b_mexanik_tel: "",
     mexanik_tel: "",
   });
-
+  const [selectedOperator, setSelectedOperator] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [ltdOptions, setLtdOptions] = useState([]); // Данные для выпадающего списка
   const [userOptions, setUserOptions] = useState([]); // Данные для выпадающего списка
 
+  const handleAddOperator = () => {
+    if (selectedOperator && !formState.operators.includes(selectedOperator)) {
+      setFormState((prev) => ({
+        ...prev,
+        operators: [...prev.operators, selectedOperator], // Добавление пользователя в массив
+      }));
+
+      setSelectedOperator(""); // Очистить выбор
+    }
+  };
+
+  const handleRemoveOperator = (operator) => {
+    setFormState((prev) => ({
+      ...prev,
+      operators: prev.operators.filter((op) => op !== operator), // Удаление пользователя
+    }));
+  };
   // Загрузка списка LTD из Firestore
   useEffect(() => {
     const fetchLtds = async () => {
@@ -99,7 +116,7 @@ function NewStation() {
       setFormState({
         ltd: "",
         station_number: "",
-        operator: "",
+        operators: [],
         moljal: "",
         viloyat: "",
         tuman: "",
@@ -196,22 +213,53 @@ function NewStation() {
                 <label className="label">
                   <span className="label-text">Фойдаланувчи</span>
                 </label>
-                <select
-                  name="operator"
-                  value={formState.operator}
-                  onChange={handleChange}
-                  className="select select-bordered w-full"
-                  required
-                >
-                  <option value="" disabled>
-                    Фойдаланувчини танланг
-                  </option>
-                  {userOptions.map((user) => (
-                    <option key={user.id} value={user.email}>
-                      {user.name} ({user.email})
+                <div className="flex gap-2">
+                  <select
+                    value={selectedOperator}
+                    onChange={(e) => setSelectedOperator(e.target.value)}
+                    className="select select-bordered w-full"
+                  >
+                    <option value="" disabled>
+                      Фойдаланувчини танланг
                     </option>
+                    {userOptions.map((user) => (
+                      <option key={user.id} value={user.email}>
+                        {user.name} ({user.email})
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    type="button"
+                    onClick={handleAddOperator}
+                    className="btn btn-primary"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              {/* Список выбранных пользователей */}
+              <div className="mt-4">
+                <h2 className="text-lg font-semibold">
+                  Танланган фойдаланувчилар:
+                </h2>
+                <ul className="list-disc pl-5">
+                  {formState.operators.map((operator, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center justify-between"
+                    >
+                      <span>{operator}</span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveOperator(operator)}
+                        className="btn btn-sm btn-error"
+                      >
+                        Рўйхатдан ўчириш
+                      </button>
+                    </li>
                   ))}
-                </select>
+                </ul>
               </div>
 
               {/* Остальные поля */}
