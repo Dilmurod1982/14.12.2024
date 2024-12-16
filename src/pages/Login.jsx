@@ -6,7 +6,6 @@ import { useRegister } from "../hooks/useRegister";
 import { useLogin } from "../hooks/useLogin";
 import { ClipLoader } from "react-spinners";
 
-
 export const action = async ({ request }) => {
   let formData = await request.formData();
   let email = formData.get("email");
@@ -51,16 +50,6 @@ function Login() {
               <div className="w-full">
                 <Button type="submit" className="w-full" variant="myv">
                   Login
-                </Button>
-              </div>
-              <div>
-                <Button
-                  onClick={registerWithGoogle}
-                  type="button"
-                  className="w-full"
-                  variant="myv"
-                >
-                  Google
                 </Button>
               </div>
             </Form>
