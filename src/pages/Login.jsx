@@ -53,7 +53,6 @@ function Login() {
                 </Button>
               </div>
             </Form>
-            <Link to="/regagnks">Register</Link>
           </div>
         </div>
       )}
