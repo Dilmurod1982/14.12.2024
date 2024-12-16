@@ -1,11 +1,13 @@
 import path from "path";
 import daisyui from "daisyui";
+import tailwindcssAnimate from "tailwindcss-animate";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 
-  plugins: [daisyui, require("tailwindcss-animate")],
+  plugins: [daisyui, tailwindcssAnimate],
   theme: {
     extend: {
       borderRadius: {
