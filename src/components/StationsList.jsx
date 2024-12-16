@@ -21,8 +21,8 @@ function StationsList() {
             <td>{user.mexanik_tel}</td>
 
             <td>
-              <Link to={`/users/edit/${user.id}`}>
-                <Button>Батафсил</Button>
+              <Link to={`/stations/edit/${user.id}`}>
+                <Button>Подробно</Button>
               </Link>
             </td>
           </tr>

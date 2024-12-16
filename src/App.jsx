@@ -23,7 +23,12 @@ import { action as RegisterAction } from "./pages/Regagnks";
 import { action as LoginAction } from "./pages/Login";
 import { action as NewUserAction } from "./pages/NewUser";
 
-import { ProtectedRoutes, EditUser, UsersList } from "./components/";
+import {
+  ProtectedRoutes,
+  EditUser,
+  UsersList,
+  SingleStation,
+} from "./components/";
 import { useAppStore } from "./components/zustand";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -32,7 +37,6 @@ import RoleBasedRedirect from "./components/RoleBasedRedirect";
 
 function App() {
   const user = useAppStore((state) => state.user);
-
   const rol = useAppStore((state) => state.rol);
   const isAuthReady = useAppStore((state) => state.isAuthReady);
   const setUser = useAppStore((state) => state.setUser);
@@ -149,14 +153,18 @@ function App() {
             )
           ) : null,
         },
+        {
+          path: "/stations/edit/:id",
+          element: <SingleStation />,
+        },
       ],
     },
-    {
-      path: "/regagnks",
-      errorElement: <ErrorPage />,
-      element: user ? <Navigate to="/" /> : <Regagnks />,
-      action: RegisterAction,
-    },
+    // {
+    //   path: "/regagnks",
+    //   errorElement: <ErrorPage />,
+    //   element: user ? <Navigate to="/" /> : <Regagnks />,
+    //   action: RegisterAction,
+    // },
     {
       path: "/login",
       errorElement: <ErrorPage />,
