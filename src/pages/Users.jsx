@@ -26,7 +26,6 @@ function Users() {
                 <th>Роли</th>
                 <th>Телефони</th>
                 <th></th>
-                <th></th>
               </tr>
             </thead>
             <tbody>

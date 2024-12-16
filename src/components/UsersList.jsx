@@ -15,9 +15,7 @@ function UsersList() {
             <td>{user.email}</td>
             <td>{user.rol}</td>
             <td>{user.tel}</td>
-            <td>
-              <Button>Удалить</Button>
-            </td>
+
             <td>
               <Link to={`/users/edit/${user.id}`}>
                 <Button>Редактировать</Button>
