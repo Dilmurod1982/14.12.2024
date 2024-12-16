@@ -16,11 +16,11 @@ function UsersList() {
             <td>{user.rol}</td>
             <td>{user.tel}</td>
 
-            <td>
+            {/* <td>
               <Link to={`/users/edit/${user.id}`}>
                 <Button>Редактировать</Button>
               </Link>
-            </td>
+            </td> */}
           </tr>
         ))}
     </>

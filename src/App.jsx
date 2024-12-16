@@ -17,6 +17,7 @@ import {
   NewStation,
   Stations,
 } from "./pages";
+import { Docs, Licence, IkCertificate, LicenceNew } from "./docs";
 import MainLayout from "./layouts/MainLayout";
 
 import { action as RegisterAction } from "./pages/Regagnks";
@@ -156,6 +157,22 @@ function App() {
         {
           path: "/stations/edit/:id",
           element: <SingleStation />,
+        },
+        {
+          path: "/docs",
+          element: <Docs />,
+        },
+        {
+          path: "/licence",
+          element: <Licence />,
+        },
+        {
+          path: "/ikcertificate",
+          element: <IkCertificate />,
+        },
+        {
+          path: "/licencenew",
+          element: <LicenceNew />,
         },
       ],
     },
