@@ -8,7 +8,7 @@ function Users() {
     <div className="mx-5">
       <div className="mr-0">
         <Button>
-          <Link to="/newuser">Янги МЧЖ яратиш</Link>
+          <Link to="/newltd">Янги МЧЖ яратиш</Link>
         </Button>
       </div>
       <div>
@@ -21,14 +21,12 @@ function Users() {
           <table className="table table-xs">
             <thead>
               <tr>
-                <th>Т/р</th>
                 <th>Номи</th>
-                <th>Шахобча №</th>
-                <th>Мўлжал</th>
-                <th>Вилоят</th>
-                <th>Газ корхонаси</th>
-                <th></th>
-                <th></th>
+                <th>Директор</th>
+                <th>Телефони</th>
+                <th>Банк номи</th>
+                <th>МФО</th>
+                <th>СТИР</th>
               </tr>
             </thead>
             <tbody>

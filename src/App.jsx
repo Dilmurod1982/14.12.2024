@@ -13,11 +13,16 @@ import {
   Users,
   NewUser,
   Ltds,
+  NewLtd,
+  NewStation,
+  Stations,
 } from "./pages";
 import MainLayout from "./layouts/MainLayout";
 
 import { action as RegisterAction } from "./pages/Regagnks";
 import { action as LoginAction } from "./pages/Login";
+import { action as NewUserAction } from "./pages/NewUser";
+
 import { ProtectedRoutes, EditUser, UsersList } from "./components/";
 import { useAppStore } from "./components/zustand";
 import { useEffect } from "react";
@@ -27,6 +32,7 @@ import RoleBasedRedirect from "./components/RoleBasedRedirect";
 
 function App() {
   const user = useAppStore((state) => state.user);
+
   const rol = useAppStore((state) => state.rol);
   const isAuthReady = useAppStore((state) => state.isAuthReady);
   const setUser = useAppStore((state) => state.setUser);
@@ -76,11 +82,12 @@ function App() {
           path: "/newuser",
           element: rol ? (
             rol === "admin" ? (
-              <Home />
+              <NewUser />
             ) : (
               <Navigate to="/homeuser" />
             )
           ) : null,
+          action: NewUserAction,
         },
         {
           path: "/users",
@@ -107,6 +114,36 @@ function App() {
           element: rol ? (
             rol === "admin" ? (
               <Ltds />
+            ) : (
+              <Navigate to="/homeuser" />
+            )
+          ) : null,
+        },
+        {
+          path: "/newltd",
+          element: rol ? (
+            rol === "admin" ? (
+              <NewLtd />
+            ) : (
+              <Navigate to="/homeuser" />
+            )
+          ) : null,
+        },
+        {
+          path: "/stations",
+          element: rol ? (
+            rol === "admin" ? (
+              <Stations />
+            ) : (
+              <Navigate to="/homeuser" />
+            )
+          ) : null,
+        },
+        {
+          path: "/newstation",
+          element: rol ? (
+            rol === "admin" ? (
+              <NewStation />
             ) : (
               <Navigate to="/homeuser" />
             )

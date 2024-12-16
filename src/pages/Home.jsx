@@ -18,7 +18,7 @@ function Home() {
         </li>
         <li className="w-full">
           <Button variant="myv" className="w-full text-2xl">
-            <Link to="/agnks">Шахобчалар рўйхати</Link>
+            <Link to="/stations">Шахобчалар рўйхати</Link>
           </Button>
         </li>
         <li className="w-full">
