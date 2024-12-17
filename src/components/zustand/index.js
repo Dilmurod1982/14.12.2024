@@ -7,6 +7,7 @@ const stateFromLocalStorage = () => {
       usersData: [],
       rol: null,
       isAuthReady: false,
+      stationId: null,
     }
   );
 };
@@ -25,6 +26,7 @@ const useAppStore = create(
   persistMiddleware((set) => ({
     ...stateFromLocalStorage(),
     setUser: (user) => set(() => ({ user })),
+    setStationId: (stationId) => set(() => ({ stationId })),
     setIsAuthReady: (isReady) => set(() => ({ isAuthReady: isReady })),
     setRol: (rol) => set(() => ({ rol })),
   }))

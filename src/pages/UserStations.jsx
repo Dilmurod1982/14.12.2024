@@ -9,7 +9,7 @@ function UserStations() {
     <div className="mx-5">
       <div>
         <h1 className="flex justify-center text-3xl font-bold my-5">
-          Фойдаланувчининг шахобчалар рўйхати
+          Фойдаланувчининг шахобчалар рўйхатB
         </h1>
       </div>
       <div>
@@ -37,7 +37,7 @@ function UserStations() {
         </div>
       </div>
       <div className="flex justify-center items-center mt-10">
-        <Link to="/" className="btn btn-primary w-48">
+        <Link to="/homeuser" className="btn btn-primary w-48">
           Орқага
         </Link>
       </div>

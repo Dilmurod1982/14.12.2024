@@ -30,7 +30,6 @@ import {
   NamlikCertificateNew,
 } from "./docs";
 import MainLayout from "./layouts/MainLayout";
-
 import { action as RegisterAction } from "./pages/Regagnks";
 import { action as LoginAction } from "./pages/Login";
 import { action as NewUserAction } from "./pages/NewUser";
@@ -41,6 +40,9 @@ import {
   UsersList,
   SingleStation,
   UserStationDocs,
+  // StationDocuments,
+  UserStationsList,
+  StationDetails,
 } from "./components/";
 import { useAppStore } from "./components/zustand";
 import { useEffect } from "react";
@@ -218,8 +220,16 @@ function App() {
           element: <NamlikCertificateNew />,
         },
         {
-          path: "/userstationdocs/edit/:id",
-          element: <UserStationDocs />,
+          path: "/userstationslist",
+          element: <UserStationsList />,
+        },
+        // {
+        //   path: "/userstationslist/:id/documents",
+        //   element: <StationDocuments />,
+        // },
+        {
+          path: "/userstationsdetails/details/:id",
+          element: <StationDetails />,
         },
       ],
     },

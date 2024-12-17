@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 
 function LicenceNew() {
   const user = useAppStore((state) => state.user);
+  const rol = useAppStore((state) => state.rol);
 
   const [formState, setFormState] = useState({
     id_station: "", // Для хранения ID выбранной станции
@@ -179,7 +180,9 @@ function LicenceNew() {
                 </Button>
               </div>
             </form>
-            <Link to="/licence">Орқага</Link>
+            <Link to={rol === "user" ? "/userstations" : "/licence"}>
+              Орқага
+            </Link>
           </div>
         </div>
       )}
