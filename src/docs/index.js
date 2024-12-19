@@ -10,3 +10,6 @@ export { default as NgCertificateNew } from "./NgCertificateNew";
 export { default as NamlikCertificate } from "./NamlikCertificate";
 export { default as NamlikCertificateList } from "./NamlikCertificateList";
 export { default as NamlikCertificateNew } from "./NamlikCertificateNew";
+export { default as AnalizatorCertificate } from "./AnalizatorCertificate";
+export { default as AnalizatorCertificateList } from "./AnalizatorCertificateList";
+export { default as AnalizatorCertificateNew } from "./AnalizatorCertificateNew";

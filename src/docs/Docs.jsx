@@ -26,6 +26,14 @@ function Docs() {
           </Link>
         </li>
         <li className="flex flex-col justify-center items-center w-full ">
+          <Link
+            to="/analizcertificate"
+            className="btn btn-primary w-full text-2xl"
+          >
+            Газ анализатор сертификати
+          </Link>
+        </li>
+        <li className="flex flex-col justify-center items-center w-full ">
           <Link to="/ikcertificate" className="btn btn-primary w-full text-2xl">
             Ўлчов комплекси сертификати
           </Link>

@@ -28,6 +28,8 @@ import {
   NgCertificateNew,
   NamlikCertificate,
   NamlikCertificateNew,
+  AnalizatorCertificate,
+  AnalizatorCertificateNew,
 } from "./docs";
 import MainLayout from "./layouts/MainLayout";
 import { action as RegisterAction } from "./pages/Regagnks";
@@ -218,6 +220,14 @@ function App() {
         {
           path: "/namlikcertificatenew",
           element: <NamlikCertificateNew />,
+        },
+        {
+          path: "/analizcertificate",
+          element: <AnalizatorCertificate />,
+        },
+        {
+          path: "/analizcertificatenew",
+          element: <AnalizatorCertificateNew />,
         },
         {
           path: "/userstationslist",
